@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Home from './Pages/Home';
 import CoinPage from './Pages/CoinPage';
-import useStyles from './Styles/AppStyles';
+import useStyles from './components/Styles/AppStyles';
 
 function App() {
 

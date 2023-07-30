@@ -1,6 +1,6 @@
 import { AppBar, Container, MenuItem, Select, ThemeProvider, Toolbar, Typography, createTheme } from '@material-ui/core';
 import React from 'react';
-import useStyles from '../Styles/HeaderStyles';
+import useStyles from './Styles/HeaderStyles';
 import { useNavigate } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 
