@@ -11,3 +11,12 @@ a{
   text-decoration: none;
   color: gold;
 }
+::-webkit-scrollbar {
+  width: 0.4rem;
+  background: #14161a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gold;
+  border-radius: 5px;
+}
