@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export default makeStyles((theme) => ({
-  container: {
+export default makeStyles((theme, selected) => ({
+  sidebarContainer: {
     display: "flex",
     [theme.breakpoints.down("md")]: {
       flexDirection: "column",
@@ -48,5 +48,39 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       alignItems: "start",
     },
+  },
+  chartContainer: {
+    width: "75%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 25,
+    padding: 40,
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      marginTop: 0,
+      padding: 20,
+      paddingTop: 0,
+    },
+  },
+  selectbutton: {
+    border: "1px solid gold",
+    borderRadius: 5,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    fontFamily: "Montserrat",
+    cursor: "pointer",
+    backgroundColor: selected ? "gold" : "",
+    color: selected ? "black" : "",
+    fontWeight: selected ? 700 : 500,
+    "&:hover": {
+      backgroundColor: "gold",
+      color: "black",
+      cursor: 'pointer'
+    },
+    width: "22%",
+    //   margin: 5,
   },
 }));

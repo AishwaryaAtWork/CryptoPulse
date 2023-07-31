@@ -14,6 +14,7 @@ const CoinPage = () => {
   const {id} = useParams();
   const [coin, setCoin] = useState();
   const {currency, symbol} = CryptoState();
+  console.log(coin)
 
   const fetchCoin = async() =>{
     try{
@@ -21,7 +22,8 @@ const CoinPage = () => {
       setCoin(data);
     }
     catch(error){
-      alert("Network error occured.Plaese try again later");
+      <LinearProgress style={{backgroundColor: 'gold'}}/>
+
     }
   };
   
@@ -35,7 +37,7 @@ const CoinPage = () => {
   if(!coin) return <LinearProgress style={{backgroundColor: 'gold'}}/>
 
   return (
-    <div className={classes.container}>
+    <div className={classes.sidebarContainer}>
 
       <div className={classes.sidebar}>
         <img src={coin?.image.large} alt={coin?.name} height='200' style={{marginBottom: 20}}/>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { CryptoState } from '../CryptoContext';
 import { Container, ThemeProvider, createTheme, Typography, TextField, Table,
     TableContainer, LinearProgress, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
-    import useStyles from './Styles/Home.js';
+import useStyles from './Styles/Home.js';
 import { useNavigate } from 'react-router-dom';
 import { numberWithCommas } from './Banner/Carousel' 
 import { Pagination } from '@material-ui/lab';
@@ -14,23 +14,23 @@ const CoinsTable = () => {
     const classes = useStyles();
     const navigate = useNavigate();
     const [coins, setCoins] = useState([]);
-    const [loading, setLoadiing] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
 
     const {currency, symbol} = CryptoState();
     
     const fetchCoins = async() =>{
-        setLoadiing(true);
+        setLoading(true);
         try{
             const {data} = await axios.get(CoinList(currency));
             setCoins(data);
         }
         catch(error){
-            alert("Network error occured. Please try again later.")
+            setLoading(true);
         }
 
-        setLoadiing(false);
+        setLoading(false);
     };
 
     useEffect(()=>{
@@ -77,7 +77,7 @@ const CoinsTable = () => {
                                 {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
 
                                     <TableCell style={{color: "black", fontWeight: "700",
-                                        fontFamily: "Montserrat",}}
+                                        fontFamily: "Montserrat"}}
                                         key={head} align={head === "Coin" ? "" : "right"} >
                                         {head}
                                     </TableCell>
