@@ -32,4 +32,17 @@ export default makeStyles({
         textTransform: "uppercase",
         color: "white",
       },
+      row: {
+        backgroundColor: "#16171a",
+        cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "#131111",
+        },
+        fontFamily: "Montserrat",
+      },
+      pagination: {
+        "& .MuiPaginationItem-root": {
+          color: "gold",
+        },
+      },
 });

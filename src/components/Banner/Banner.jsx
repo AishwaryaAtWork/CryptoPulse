@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../Styles/Banner.js';
+import useStyles from '../Styles/Home.js';
 import { Container, Typography } from '@material-ui/core';
 import Carousel from './Carousel.jsx';
 

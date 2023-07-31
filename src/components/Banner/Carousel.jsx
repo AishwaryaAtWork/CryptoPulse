@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useStyles from '../Styles/Banner.js';
+import useStyles from '../Styles/Home.js';
 import axios from 'axios';
 import { CryptoState } from '../../CryptoContext.js';
 import { TrendingCoins } from '../../config/api.js';
