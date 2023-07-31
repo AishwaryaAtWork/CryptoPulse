@@ -17,8 +17,13 @@ const Carousel = () => {
     const { currency, symbol } = CryptoState();
 
     const fetchTrendingCoins = async()=>{
-        const {data} = await axios.get(TrendingCoins(currency));
-        setTrending(data);
+        try{
+            const {data} = await axios.get(TrendingCoins(currency));
+            setTrending(data);
+        }
+        catch(error){
+            alert("Network error occured. Please try again later.");
+        }
     };
 
     useEffect(()=>{

@@ -22,10 +22,14 @@ const CoinsTable = () => {
     
     const fetchCoins = async() =>{
         setLoadiing(true);
+        try{
+            const {data} = await axios.get(CoinList(currency));
+            setCoins(data);
+        }
+        catch(error){
+            alert("Network error occured. Please try again later.")
+        }
 
-        const {data} = await axios.get(CoinList(currency));
-
-        setCoins(data);
         setLoadiing(false);
     };
 
