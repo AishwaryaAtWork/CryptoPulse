@@ -9,9 +9,6 @@ import { chartDays } from '../config/data';
 import SelectButton from './SelectButton'; 
 import { enUS } from 'date-fns/locale'; 
 import 'chartjs-adapter-date-fns'; 
-// import { Chart } from 'react-chartjs-2';
-// import Chart from 'chart.js/auto'
-// import {LineController}
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,8 +25,9 @@ ChartJS.register(CategoryScale,TimeScale, LinearScale, PointElement, LineElement
 
 
 const CoinInfo = ({coin}) => {
-
+  
   const [historicData, setHistoricData] = useState();
+  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [days, setDays] = useState(1);
   const {currency} = CryptoState();
   const [flag, setFlag] =useState(false);
@@ -38,17 +36,43 @@ const CoinInfo = ({coin}) => {
     try{
       const {data} = await axios.get(HistoricalChart(coin.id, days, currency));
       setFlag(true);
-      setHistoricData(data.prices);
+      setHistoricData(Object.values(data.prices));
     }
     catch(error){
       <CircularProgress style={{color: 'gold'}} size={250} thickness={1}/>
     }
   }
+  historicData?.map((coin)=> console.log(coin))
+  console.log(typeof(historicData))
 
   useEffect(()=>{
     fetchHistoricData();
     // eslint-disable-next-line 
   },[currency, days]);
+
+  useEffect(() => {
+    if (historicData) {
+      const newLabels = historicData.map((coin) => {
+        let date = new Date(coin[0]);
+        let time = date.getHours() > 12
+          ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+          : `${date.getHours()}:${date.getMinutes()} AM`;
+  
+        return days === 1 ? time : date.toLocaleString('en-US');
+      });
+  
+      const newDataset = {
+        data: historicData.map((coin) => coin[1]),
+        label: `Price ( Past ${days} Days ) in ${currency}`,
+        borderColor: "#EEBC1D",
+      };
+  
+      setChartData({
+        labels: newLabels,
+        datasets: [newDataset], 
+      });
+    }
+  }, [historicData, days, currency]);
 
   const classes = useStyles();
 
@@ -61,24 +85,10 @@ const CoinInfo = ({coin}) => {
     }
   });
 
-  const chartData = {
+  const ChartData = {
     data: {
-      labels: historicData?.map((coin)=>{
-
-        let date = new Date(coin[0]);
-        let time = date.getHours() > 12
-              ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-              : `${date.getHours()}:${date.getMinutes()} AM`;
-
-            return days === 1 ? time : date.toLocaleString('en-US');
-      }),
-      datasets: [
-        {
-          data: historicData?.map((coin) => (coin[1])),
-          label: `Price ( Past ${days} Days ) in ${currency}`,
-          borderColor: "#EEBC1D",
-        },
-      ],
+      labels: chartData.labels,
+      datasets: chartData.datasets
     },
     options: {
       elements:{
@@ -110,8 +120,8 @@ const CoinInfo = ({coin}) => {
           ) : (
             <>
             {/* Chart  */}
-            <Line key={coin.id} data={chartData.data}
-            options={chartData.options} />
+            <Line key={coin.id} data={ChartData.data}
+            options={ChartData.options} />
 
              {/* Buttons  */}
              <div style={{display: 'flex', marginTop: 20, justifyContent: 'space-around', width: '100%'}}>

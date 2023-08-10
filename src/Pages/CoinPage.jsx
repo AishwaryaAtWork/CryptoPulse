@@ -14,7 +14,6 @@ const CoinPage = () => {
   const {id} = useParams();
   const [coin, setCoin] = useState();
   const {currency, symbol} = CryptoState();
-  console.log(coin)
 
   const fetchCoin = async() =>{
     try{
