@@ -8,7 +8,8 @@ A crypto currency tracker application that will track hundreds of crypto currenc
 React Js, Chart Js, Material UI and CoinGecko Api. 
 
 ## Screenshots
-![Screenshot (680)](https://github.com/AishwaryaAtWork/CryptoPulse/assets/109826222/73a57eb8-7135-41bc-afdc-5ee98e1999f5)
+![Screenshot (680)](https://github.com/AishwaryaAtWork/CryptoPulse/assets/109826222/c943dd9d-948e-434e-b516-5648ee73f92e)
+
 
 ![Screenshot (681)](https://github.com/AishwaryaAtWork/CryptoPulse/assets/109826222/91bb88f0-8a24-4d7b-bc57-d56b70010927)
 
